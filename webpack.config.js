@@ -4,13 +4,19 @@ const path = require('path')
 // 引入vue-loader的插件
 const VueLoaderPlugin = require('vue-loader/lib/plugin')
 
+// 引入html-webpack-plugin
+const HtmlWebpackPlugin = require('html-webpack-plugin')
+
+// 引入clean-webpack-plugin
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+
 module.exports = {
     mode: 'development',
     // 打包入口
     entry: './src/main.js',
     // 打包出口
     output: {
-        filename: 'bundle.js',
+        filename: 'main.js',
         path: path.resolve(__dirname, 'dist')
     },
     // 打包规则
@@ -28,11 +34,18 @@ module.exports = {
         }, {
             test: /\.css$/,
             use: ['style-loader', 'css-loader']
+        }, {
+            test: /\.styl(us)?$/,
+            use: ['vue-style-loader', 'css-loader', 'postcss-loader', 'stylus-loader']
         }]
     },
     // 插件
     plugins: [
-        new VueLoaderPlugin()
+        new VueLoaderPlugin(),
+        new HtmlWebpackPlugin({
+            template: './index.html'
+        }),
+        new CleanWebpackPlugin()
     ],
     resolve: {
         alias: {
