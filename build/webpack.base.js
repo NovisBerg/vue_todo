@@ -31,10 +31,10 @@ module.exports = {
     // 打包规则
     module: {
         rules: [
-            { 
-                test: /\.js$/, 
-                exclude: /node_modules/, 
-                loader: "babel-loader" 
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader"
             },
             {
                 test: /\.vue$/,
@@ -60,7 +60,10 @@ module.exports = {
     },
     resolve: {
         alias: {
-            vue: 'vue/dist/vue.js'
+            vue: 'vue/dist/vue.js',
+            '@': path.resolve(__dirname, '../src'),
+            'styles': path.resolve(__dirname, '../src/assets/styles'),
+            'images': path.resolve(__dirname, '../src/assets/images')
         }
     }
 }

@@ -1,2 +1,4 @@
 # 忽略根目录下node_modules文件夹中的所有文件
 /node_modules/*
+# 忽略webstorm编辑器的相关文件
+/.vscode/*

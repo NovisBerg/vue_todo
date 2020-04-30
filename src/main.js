@@ -14,7 +14,3 @@ new Vue({
     },
     template: '<App/>'
 })
-// 挂载App组件
-
-const arr = [1, 2, 3].map(item => item + 1)
-console.log(arr);
