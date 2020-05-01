@@ -1,6 +1,6 @@
 <template>
     <div :class="['todo-item', todo.completed? 'completed': '']">
-        <input type="checkbox">
+        <input type="checkbox" :class="['input', todo.completed? 'completed': '']" @click="changeCompleted">
         <label>{{ todo.content }}</label>
         <button @click="delItem"></button>
     </div>
@@ -15,6 +15,9 @@
         methods: {
             delItem() {
                 this.$emit('del', this.todo.id)
+            },
+            changeCompleted() {
+                this.$emit('change', this.todo.id)
             }
         }
     }
@@ -40,16 +43,15 @@
             label
                 color: #d9d9d9
                 text-decoration: line-through
-        input
+        .input
             width: 50px
             height: 30px
             text-align: center
             cleanDefaultStyle()
-
-            &:after
-                content: url("~images/unChecked.svg")
-            &:checked:after
+            content: url("~images/unChecked.svg")
+            &.completed
                 content: url("~images/checked.svg")
+                
         label
             flex: 1
             transition: color 0.4s

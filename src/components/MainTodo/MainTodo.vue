@@ -13,6 +13,7 @@
                 :key="index"
                 :todo="item"
                 @del="handelDeleteItem"
+                @change="handleChangeCompleted"
         ></todo-item>
         <todo-info :total="total" @toggleState="handleToggleState" @clearCompleted="handleClear"></todo-info>
     </div>
@@ -53,6 +54,15 @@
                 this.todoData.splice(
                     this.todoData.findIndex(item => item.id === id),
                     1
+                )
+            },
+            handleChangeCompleted(id) {
+                this.todoData.filter(
+                    item => {
+                        if (item.id === id) {
+                            item.completed = !item.completed
+                        }
+                    }
                 )
             },
             handleToggleState(state) {
